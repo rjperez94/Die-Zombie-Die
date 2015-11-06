@@ -226,11 +226,11 @@ public class MenuState extends GameState {
 				} else if (screen == 2) {
 					switch (selectedJoinOption) {
 					case 2:
-//						bgm.stop();
-//						Multiplayer mp = (Multiplayer) gsm
-//								.getState(GameStateManager.MULTIPLAYER);
+						bgm.stop();
+						Multiplayer mp = (Multiplayer) gsm
+								.getState(GameStateManager.MULTIPLAYER);
 //						mp.setHost(host,Integer.parseInt(port));
-//						gsm.setCurrentState(GameStateManager.MULTIPLAYER);
+						gsm.setCurrentState(GameStateManager.MULTIPLAYER);
 						break;
 					case 3:
 						screen = 1;

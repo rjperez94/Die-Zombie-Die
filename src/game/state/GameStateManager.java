@@ -31,7 +31,7 @@ public class GameStateManager {
 		states = new ArrayList<>();
 		states.add(new MenuState(this));
 		states.add(new PlayState(this));
-		//states.add(new Multiplayer(this));
+		states.add(new Multiplayer(this));
 		states.get(currentState).init();
 	}
 
