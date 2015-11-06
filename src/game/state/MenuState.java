@@ -9,8 +9,6 @@ import game.exception.GraphicsException;
 import game.graphics.GraphicsLoader;
 import game.graphics.Sprite;
 import game.graphics.StaticSprite;
-import game.network.client.ClientSender;
-import game.server.ui.ServerMenu;
 import game.sound.AudioClip;
 
 /**
@@ -218,7 +216,7 @@ public class MenuState extends GameState {
 						accelerating = true;
 						break;
 					case 1:
-						new ServerMenu();
+						//new ServerMenu();
 						break;
 					case 2:
 						screen = 0;
@@ -228,11 +226,11 @@ public class MenuState extends GameState {
 				} else if (screen == 2) {
 					switch (selectedJoinOption) {
 					case 2:
-						bgm.stop();
-						Multiplayer mp = (Multiplayer) gsm
-								.getState(GameStateManager.MULTIPLAYER);
-						mp.setHost(host,Integer.parseInt(port));
-						gsm.setCurrentState(GameStateManager.MULTIPLAYER);
+//						bgm.stop();
+//						Multiplayer mp = (Multiplayer) gsm
+//								.getState(GameStateManager.MULTIPLAYER);
+//						mp.setHost(host,Integer.parseInt(port));
+//						gsm.setCurrentState(GameStateManager.MULTIPLAYER);
 						break;
 					case 3:
 						screen = 1;
