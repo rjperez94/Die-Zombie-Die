@@ -1,0 +1,33 @@
+32 52
+WWWWWWWWWWWW WWWWWWWWWWWW WWWWWWWWWWWW WWWWWWWWWWWWW
+WKW________WWW____P_____WWW__________WWWK_W____H___W
+W_W_________D____________D______H_____D___W________W
+W_WWWWW_____D____________D____________D___W________W
+W_____W____WWW__________WWW__________WWW__W________W 
+WWWWW_W____W WW__WWWWWWWW WW__WWWWWWWW W__W__P_____W
+W__________W  WDDW         WDDW        W__W________W
+W__________W WW__WW       WW__WW       W__W________W
+W________H_W W____W       W_K__W       W___________W
+W__________W W____W       W____W       W___________W
+W__________W W____W       W____W       W___________W
+WW__WWWW__WW W__H_W       W____W       WWWWWWWWW__WW
+ WDDW  WDDW  WW__WW       WW__WW               WDDW 
+WW__WWWW__WW  WDDW         WDDW               WW__WW
+W__________W WW__WWWWWWWW WW__WW WWWWWWWWWWWW WP___W 
+W_P________WWW______P___WWW____WWW__________WWW____W
+W___________D____________D___P__D____________D_____W
+W___________D____________D______D____________D_____W
+W__C_______WWW__________WWW____WWW__________WWWWWWWW
+W__________W WWWWWWWWWWWW W____W W__________W 
+W__________W              W____W W__________W
+W__________W              W____WWW__________W
+W__________W              W_____D___________W
+W__________W              W_____D___WWWWWWWWW
+WWWWWWWW__WW              W____WWW________K_W
+       WDDW               WWWWWW WWWWWWWWWWWW
+      WW__WW
+      W____W
+      W____W
+      W____W
+      W__K_W
+      WWWWWW	  

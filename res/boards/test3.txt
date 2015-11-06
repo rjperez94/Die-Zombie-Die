@@ -1,0 +1,11 @@
+10 21
+WWWWWWWWWWWWWWWWWWWW
+W_____H____K_______W
+W__________________W
+W_____P________P_WWW
+W_____C__________D_W
+W_____Z________Z_D_W
+W________________WWW
+W__________WWWWWWWWW
+W_____H___________SW
+WWWWWWWWWWWWWWWWWWWW
