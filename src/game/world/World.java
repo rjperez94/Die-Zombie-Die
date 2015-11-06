@@ -14,7 +14,6 @@ import game.Utilities;
 import game.character.Character;
 import game.character.Player;
 import game.character.Zombie;
-import game.events.WorldInitialise;
 import game.exception.FileFormatException;
 import game.exception.GameException;
 import game.exception.GraphicsException;
@@ -87,43 +86,6 @@ public class World implements Serializable {
 		// set time of initial generate
 		phaserGenerateTimer = System.currentTimeMillis();
 		keyGenerateTimer = System.currentTimeMillis();
-	}
-
-	public World(WorldInitialise wi) {
-		this.sprites = loadWorldSprites();
-		this.objects = wi.getObjects();
-		this.entities = wi.getEntities();
-		this.stationaryObj = wi.getStationaryObj();
-		this.pickableItems = wi.getPickableItems();
-		this.bullets = wi.getBullets();
-
-		for (int row = 0; row < objects.length; row++) {
-			for (int col = 0; col < objects[row].length; col++) {
-				if (objects[row][col] instanceof Floor) {
-					objects[row][col] = new Floor("Floor at :" + row + " " + col, col, row, 0, sprites.get("floor"));
-				} else if (objects[row][col] instanceof Wall) {
-					objects[row][col] = new Wall("Wall at: " + row + " " + col, col, row, 1000, sprites.get("wall"),
-							false);
-				} else if (objects[row][col] instanceof Pill) {
-					objects[row][col] = new Pill("Pill at: " + row + " " + col, col, row, 700, Utilities.randNum(5, 15),
-							sprites.get("pill"));
-				} else if (objects[row][col] instanceof Crate) {
-					objects[row][col] = new Crate("Crate at: " + row + " " + col, col, row, 1000, true,
-							sprites.get("crate"));
-				} else if (objects[row][col] instanceof KeyCard) {
-					objects[row][col] = new KeyCard("KeyCard at: " + row + " " + col, col, row, 700,
-							sprites.get("key"));
-				} else if (objects[row][col] instanceof SupplyBox) {
-					objects[row][col] = new SupplyBox("SupplyBox at: " + row + " " + col, col, row, 450,
-							sprites.get("supply"));
-				} else if (objects[row][col] instanceof Door) {
-					objects[row][col] = new Door("Door at :" + row + " " + col, col, row, 1000, sprites.get("door"));
-				} else if (objects[row][col] instanceof Phaser) {
-					objects[row][col] = new Phaser("Phaser at :" + row + " " + col, col, row, 1000,
-							sprites.get("phaser"));
-				}
-			}
-		}
 	}
 
 	/**
