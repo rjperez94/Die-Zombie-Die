@@ -525,20 +525,20 @@ public class World implements Serializable {
 		bullets.remove(bullet);
 	}
 
-	public List<Zombie> getZombies() {
-		// TODO Auto-generated method stub
-		return zombies;
-	}
-
-	public List<Player> getPlayers() {
-		// TODO Auto-generated method stub
-		return players;
-	}
-
-	public GameObject[][] getArray() {
-		return objects;
-
-	}
+//	public List<Zombie> getZombies() {
+//		// TODO Auto-generated method stub
+//		return zombies;
+//	}
+//
+//	public List<Player> getPlayers() {
+//		// TODO Auto-generated method stub
+//		return players;
+//	}
+//
+//	public GameObject[][] getArray() {
+//		return objects;
+//
+//	}
 
 	// Code relevant only to Loading and Saving
 	/**

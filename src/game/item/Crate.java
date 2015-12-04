@@ -59,28 +59,28 @@ public class Crate extends Item implements Serializable {
 		if (!isMovable) return;		//check type
 
 		if (player.isFacing() == Direction.EAST) { //player from WEST of item
-			if (!crateCollision(world.getObjects(), new Crate(name, xLoc+1, yLoc, zLoc, isMovable, null))) {
+			if (crateCollision(world.getObjects(), new Crate(name, xLoc+1, yLoc, zLoc, isMovable, null))) {
 				return;
 			}
 			setToFloor(world,floorSprite);
 			this.xLoc+=1;
 			setToThis(world);
 		} else if (player.isFacing() == Direction.WEST) { //player from EAST of item
-			if (!crateCollision(world.getObjects(), new Crate(name, xLoc-1, yLoc, zLoc, isMovable, null))) {
+			if (crateCollision(world.getObjects(), new Crate(name, xLoc-1, yLoc, zLoc, isMovable, null))) {
 				return;
 			}
 			setToFloor(world, floorSprite);
 			this.xLoc-=1;
 			setToThis(world);
 		} else if (player.isFacing() == Direction.SOUTH) { //player from NORTH of item
-			if (!crateCollision(world.getObjects(), new Crate(name, xLoc, yLoc+1, zLoc, isMovable, null))) {
+			if (crateCollision(world.getObjects(), new Crate(name, xLoc, yLoc+1, zLoc, isMovable, null))) {
 				return;
 			}
 			setToFloor(world, floorSprite);
 			this.yLoc+=1;
 			setToThis(world);
 		} else if (player.isFacing() == Direction.NORTH) { //player from SOUTH of item
-			if (!crateCollision(world.getObjects(), new Crate(name, xLoc, yLoc-1, zLoc, isMovable, null))) {
+			if (crateCollision(world.getObjects(), new Crate(name, xLoc, yLoc-1, zLoc, isMovable, null))) {
 				return;
 			}
 			setToFloor(world, floorSprite);
@@ -117,8 +117,10 @@ public class Crate extends Item implements Serializable {
 	 */
 	private boolean crateCollision(List<GameObject> list, Crate crate) {
 		for (GameObject o : list) {
-			if (o.boundingBox().intersects(crate.boundingBox())) { // collision
-				return true;
+			if (!o.equals(this)) {
+				if (o.boundingBox().intersects(crate.boundingBox())) { // collision
+					return true;
+				}
 			}
 		}
 		return false;

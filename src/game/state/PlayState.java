@@ -138,7 +138,7 @@ public class PlayState extends GameState {
 				// update player
 				player.update(world, dir);
 				if (nearestItem != null) {
-					System.out.println("Item: " +  nearestItem.getName());
+					//System.out.println("Item: " +  nearestItem.getName());
 					world.use(player, nearestItem);
 					nearestItem = null;
 				}
