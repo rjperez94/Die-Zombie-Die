@@ -26,7 +26,6 @@ import game.item.KeyCard;
 import game.item.SupplyBox;
 import game.item.Door;
 import game.item.type.Item;
-import game.state.PlayState;
 
 /**
  * This represents the game 'map'
