@@ -227,8 +227,7 @@ public class MenuState extends GameState {
 					switch (selectedJoinOption) {
 					case 2:
 						bgm.stop();
-						Multiplayer mp = (Multiplayer) gsm
-								.getState(GameStateManager.MULTIPLAYER);
+//						Multiplayer mp = (Multiplayer) gsm.getState(GameStateManager.MULTIPLAYER);
 //						mp.setHost(host,Integer.parseInt(port));
 						gsm.setCurrentState(GameStateManager.MULTIPLAYER);
 						break;
