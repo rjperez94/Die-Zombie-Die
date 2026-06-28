@@ -2,8 +2,7 @@ package game.world;
 
 import java.awt.Color;
 import java.awt.Graphics2D;
-
-import javafx.geometry.BoundingBox;
+import java.awt.geom.Rectangle2D;
 import game.Utilities;
 import game.Utilities.Direction;
 import game.character.Player;
@@ -22,7 +21,7 @@ public class Bullet extends GameObject {
 
 	/**
 	 * Constructor
-	 * @param name - bullet alias
+	 * @param player - bullet alias
 	 * @param xStart - initial x position
 	 * @param yStart - initial y position
 	 * @param zStart - initial z position
@@ -84,8 +83,8 @@ public class Bullet extends GameObject {
 	}
 
 	@Override
-	public BoundingBox boundingBox() {
-		return new BoundingBox(xLoc, yLoc, World.TILE_SIZE/2, World.TILE_SIZE/2);
+	public Rectangle2D.Float boundingBox() {
+		return new Rectangle2D.Float(xLoc, yLoc, (float) World.TILE_SIZE /2, (float) World.TILE_SIZE /2);
 	}
 
 	/**

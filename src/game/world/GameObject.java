@@ -3,8 +3,9 @@ package game.world;
 import game.graphics.Sprite;
 
 import java.awt.Graphics2D;
+import java.awt.geom.Rectangle2D;
 
-import javafx.geometry.BoundingBox;
+//import javafx.geometry.BoundingBox;
 
 /**
  * This ensures that objects which are appearing on the
@@ -52,10 +53,11 @@ public abstract class GameObject {
 	/**
 	 * Returns a BoundingBox that corresponds to the position of this object's FEET if a Character
 	 * <br> or the topLeft if it's not.
+	 *
 	 * @return
 	 */
-	public BoundingBox boundingBox() {
-		return new BoundingBox(xLoc*World.TILE_SIZE, yLoc*World.TILE_SIZE, World.TILE_SIZE, World.TILE_SIZE);
+	public Rectangle2D.Float boundingBox() {
+		return new Rectangle2D.Float(xLoc*World.TILE_SIZE, yLoc*World.TILE_SIZE, World.TILE_SIZE, World.TILE_SIZE);
 	}
 
 	//GETTERS/SETTERS

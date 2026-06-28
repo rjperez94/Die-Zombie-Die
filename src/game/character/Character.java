@@ -1,13 +1,11 @@
 package game.character;
 
 import java.awt.Graphics2D;
+import java.awt.geom.Rectangle2D;
 import java.util.HashMap;
 import java.util.Map;
-
-import javafx.geometry.BoundingBox;
 import game.Utilities.Direction;
 import game.graphics.Sprite;
-import game.state.PlayState;
 import game.world.GameObject;
 import game.world.World;
 
@@ -52,16 +50,16 @@ public abstract class Character extends GameObject {
 	}
 
 	@Override
-	public BoundingBox boundingBox() {
-		return new BoundingBox(xLoc+2, yLoc+(getFeetHeight()*3), getFeetWidth(), getFeetHeight());
+	public Rectangle2D.Float boundingBox() {
+		return new Rectangle2D.Float(xLoc+2, yLoc+(getFeetHeight()*3), getFeetWidth(), getFeetHeight());
 	}
 
 	/**
 	 * Returns the entire area of the Bounding Box occupied by this character
 	 * @return
 	 */
-	public BoundingBox entireBoundingBox() {
-		return new BoundingBox(xLoc, yLoc, World.TILE_SIZE, World.TILE_SIZE*1.7);
+	public Rectangle2D.Float entireBoundingBox() {
+		return new Rectangle2D.Float(xLoc, yLoc, (float) World.TILE_SIZE, (float) (World.TILE_SIZE*1.7));
 	}
 
 	@Override
