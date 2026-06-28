@@ -56,6 +56,7 @@ public class Game extends Canvas implements Runnable {
 			font = GraphicsLoader.loadFont("/fonts/gamegirl.ttf");
 		} catch (GraphicsException e) {
 			e.printStackTrace();
+			font = new Font(Font.MONOSPACED, Font.PLAIN, 12); // Safe fallback for CheerpJ
 		}
 
 		setPreferredSize(new Dimension(Game.WIDTH * Game.SCALE, Game.HEIGHT * Game.SCALE));
