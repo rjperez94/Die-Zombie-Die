@@ -51,12 +51,13 @@ public class Game extends Canvas implements Runnable {
 	public Game() {
 		image = new BufferedImage(Game.WIDTH, Game.HEIGHT, BufferedImage.TYPE_INT_ARGB);
 		gsm = new GameStateManager();
-		
+
+		// 1. Handle font fetching early
 		try {
 			font = GraphicsLoader.loadFont("/fonts/gamegirl.ttf");
 		} catch (GraphicsException e) {
 			e.printStackTrace();
-			font = new Font(Font.MONOSPACED, Font.PLAIN, 12); // Safe fallback for CheerpJ
+			font = new Font(Font.MONOSPACED, Font.PLAIN, 12); // Safety backup
 		}
 
 		setPreferredSize(new Dimension(Game.WIDTH * Game.SCALE, Game.HEIGHT * Game.SCALE));
@@ -67,10 +68,22 @@ public class Game extends Canvas implements Runnable {
 		frame.add(this);
 		frame.pack();
 		frame.setLocationRelativeTo(null);
-		frame.setVisible(true);
-		
+
+		// 2. Add input listeners BEFORE the window presents itself
 		addKeyListener(new KeyHandler(gsm));
-		requestFocus();
+
+		// 3. Make the window visible
+		frame.setVisible(true);
+
+		// 4. Introduce a deliberate startup pause specifically for CheerpJ's web backend
+		try {
+			Thread.sleep(250); // Gives the browser 1/4 second to mount the Canvas DOM element
+		} catch (InterruptedException e) {
+			e.printStackTrace();
+		}
+
+		// 5. Request focus only after the browser establishes the DOM node
+		requestFocusInWindow();
 	}
 
 	/**
