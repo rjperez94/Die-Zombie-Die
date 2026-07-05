@@ -3,7 +3,9 @@ package game.state;
 import java.awt.Color;
 import java.awt.Graphics2D;
 import java.awt.event.KeyEvent;
+import java.io.File;
 
+import game.Game;
 import game.exception.GameException;
 import game.exception.GraphicsException;
 import game.graphics.GraphicsLoader;
@@ -48,12 +50,12 @@ public class MenuState extends GameState {
 	 */
 	@Override
 	public void init() {
-		bgm = new AudioClip("/sounds/fight.wav");
+		bgm = new AudioClip(Game.SOUND_DIR+File.separator+"fight.wav");
 		vel = 1f;
 
 		try {
 			starfield = new StaticSprite(
-					GraphicsLoader.loadImage("/backgrounds/menu.png"));
+					GraphicsLoader.loadImage(Game.BACK_DIR+File.separator+"menu.png"));
 		} catch (GraphicsException e) {
 			e.printStackTrace();
 		}

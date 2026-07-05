@@ -8,13 +8,17 @@ import java.awt.Graphics;
 import java.awt.Graphics2D;
 import java.awt.image.BufferStrategy;
 import java.awt.image.BufferedImage;
+import java.io.File;
+import java.util.Map;
 
-import javax.swing.JFrame;
+import javax.swing.*;
 
 import game.exception.GraphicsException;
 import game.graphics.GraphicsLoader;
 import game.input.KeyHandler;
 import game.state.GameStateManager;
+
+import static java.util.Map.entry;
 
 /**
  * <code>Game</code> holds the main entry point for the client side of the game.
@@ -27,8 +31,14 @@ import game.state.GameStateManager;
  * @version 0.1.0
  */
 
-@SuppressWarnings("serial")
 public class Game extends Canvas implements Runnable {
+	// Asset directories
+	public static File BACK_DIR;
+	public static File BOARD_DIR;
+	public static File FONT_DIR;
+	public static File SOUND_DIR;
+	public static File SPRITE_DIR;
+
 	private BufferedImage image;
 	private GameStateManager gsm;
 	private Font font;
@@ -49,12 +59,18 @@ public class Game extends Canvas implements Runnable {
 	 * new <code>JFrame</code> for the game.
 	 */
 	public Game() {
+		Game.BACK_DIR = chooseDir("Select background directory", "starfield.png");
+		Game.BOARD_DIR = chooseDir("Select board directory", "mapFile.txt");
+		Game.FONT_DIR = chooseDir("Select font directory", "gamegirl.ttf");
+		Game.SOUND_DIR = chooseDir("Select sound directory", "fight.wav");
+		Game.SPRITE_DIR = chooseDir("Select sprite directory", "player.png");
+
 		image = new BufferedImage(Game.WIDTH, Game.HEIGHT, BufferedImage.TYPE_INT_ARGB);
 		gsm = new GameStateManager();
 
 		// 1. Handle font fetching early
 		try {
-			font = GraphicsLoader.loadFont("/fonts/gamegirl.ttf");
+			font = GraphicsLoader.loadFont(Game.FONT_DIR+File.separator+"gamegirl.ttf");
 		} catch (GraphicsException e) {
 			e.printStackTrace();
 			font = new Font(Font.MONOSPACED, Font.PLAIN, 12); // Safety backup
@@ -84,6 +100,43 @@ public class Game extends Canvas implements Runnable {
 
 		// 5. Request focus only after the browser establishes the DOM node
 		requestFocusInWindow();
+	}
+
+	private File chooseDir(final String dialogTitle, final String testFileName) {
+		File test = null;
+
+		// Load required images using a JFileChooser
+		JFileChooser fileChooser = new JFileChooser();
+
+		// set up the file chooser
+		fileChooser.setCurrentDirectory(new File("."));
+		fileChooser.setDialogTitle(dialogTitle);
+		fileChooser.setFileSelectionMode(JFileChooser.DIRECTORIES_ONLY);
+
+		// run the file chooser and check the user didn't hit cancel
+		if (fileChooser.showOpenDialog(null) == JFileChooser.APPROVE_OPTION) {
+			// get the files in the selected directory and match them to
+			// the files we need.
+			File directory = fileChooser.getSelectedFile();
+			File[] files = directory.listFiles();
+
+			for (File f : files) {
+				if (f.getName().equals(testFileName)) {
+					test = f;
+				}
+			}
+
+			// check none of the files are missing, and call the load
+			// method in your code.
+			if (test == null) {
+				JOptionPane.showMessageDialog(null, "Directory does not contain correct files", "Error",
+						JOptionPane.ERROR_MESSAGE);
+				System.exit(1);
+			} else {
+				return new File(test.getParent());    //  Set directory
+			}
+		}
+		return null;
 	}
 
 	/**

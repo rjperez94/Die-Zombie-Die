@@ -6,6 +6,8 @@ import javax.sound.sampled.Clip;
 
 import game.Game;
 
+import java.io.File;
+
 public class AudioClip {
 	private Clip clip;
 	private AudioInputStream ais;
@@ -13,7 +15,7 @@ public class AudioClip {
 	public AudioClip(String filepath) {
 		try {
 			clip = AudioSystem.getClip();
-			ais = AudioSystem.getAudioInputStream(Game.class.getResourceAsStream(filepath));
+			ais = AudioSystem.getAudioInputStream(new File(filepath));
 			clip.open(ais);
 		} catch (Exception e) {
 			clip = null;

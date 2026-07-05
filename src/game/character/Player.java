@@ -1,6 +1,7 @@
 package game.character;
 
 import java.awt.Graphics2D;
+import java.io.File;
 import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.List;
@@ -101,8 +102,7 @@ public class Player extends Character implements Serializable {
 	 */
 	public void loadSprites() {
 		try {
-			SpriteSheet spritesheet = new SpriteSheet(
-					"/spritesheets/player.png", 4, 8);
+			SpriteSheet spritesheet = new SpriteSheet(Game.SPRITE_DIR+File.separator+"player.png", 4, 8);
 			sprites.put("stopDown", spritesheet.getSprite(0, 0));
 			sprites.put("stopUp", spritesheet.getSprite(1, 0));
 			sprites.put("stopRight", spritesheet.getSprite(2, 0));
@@ -273,15 +273,10 @@ public class Player extends Character implements Serializable {
 	 * Move this Player to given direction <br>
 	 * Check for valid move
 	 *
-	 * @param state
-	 *            - the game level
 	 * @param world
+	 *            - the world this Player is in
 	 * @param dir
-	 *            - Direction to move to
-	 * @param xOffset
-	 *            - x coordinate centre offset
-	 * @param yOffset
-	 *            - y coordinate centre offset
+	 *            - the direction to move to
 	 * @return true iff move to direction is a non-collision move
 	 */
 	public boolean moveTo(World world, Direction dir) {
@@ -324,7 +319,6 @@ public class Player extends Character implements Serializable {
 	/**
 	 * Renders the animated sprite to the screen
 	 *
-	 * @param world
 	 * @param g2
 	 *            - the graphics object
 	 */

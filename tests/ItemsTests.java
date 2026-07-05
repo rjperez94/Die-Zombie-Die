@@ -13,6 +13,8 @@ import game.item.Vest;
 import game.world.World;
 import org.junit.Test;
 
+import java.io.File;
+
 /**
  * Test suite for all Items and subtypes of it including Weapon and Equipment
  * @author Ronni Perez "perezronn"
@@ -22,7 +24,7 @@ public class ItemsTests {
 
 	@Test
 	public void testCrateMoveNorth() {
-		World world = new World("/boards/test4.txt");
+		World world = new World(System.getProperty("user.dir")+ File.separator+"res\\boards\\test4.txt");
 
 		Player player = new Player("",10*World.TILE_SIZE,10*World.TILE_SIZE,10);
 		player.setFacing(Direction.NORTH);
@@ -37,7 +39,7 @@ public class ItemsTests {
 
 	@Test
 	public void testCrateMoveSouth() {
-		World world = new World("/boards/test4.txt");
+		World world = new World(System.getProperty("user.dir")+"\\res\\boards\\test4.txt");
 
 		Player player = new Player("",10*World.TILE_SIZE,10*World.TILE_SIZE,1000);
 		player.setFacing(Direction.SOUTH);
@@ -52,7 +54,7 @@ public class ItemsTests {
 
 	@Test
 	public void testCrateMoveWest() {
-		World world = new World("/boards/test4.txt");
+		World world = new World(System.getProperty("user.dir")+"\\res\\boards\\test4.txt");
 
 		Player player = new Player("",10*World.TILE_SIZE,10*World.TILE_SIZE,1000);
 		player.setFacing(Direction.WEST);
@@ -67,7 +69,7 @@ public class ItemsTests {
 
 	@Test
 	public void testCrateMoveEast() {
-		World world = new World("/boards/test4.txt");
+		World world = new World(System.getProperty("user.dir")+"\\res\\boards\\test4.txt");
 
 		Player player = new Player("",10*World.TILE_SIZE,10*World.TILE_SIZE,1000);
 		player.setFacing(Direction.EAST);

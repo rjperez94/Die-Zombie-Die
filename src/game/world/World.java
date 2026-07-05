@@ -1,9 +1,6 @@
 package game.world;
 
-import java.io.BufferedReader;
-import java.io.IOException;
-import java.io.InputStreamReader;
-import java.io.Serializable;
+import java.io.*;
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
@@ -70,7 +67,6 @@ public class World implements Serializable {
 	/**
 	 * Constructor
 	 * 
-	 * @param state - the game level
 	 * @param fileName - relative target of map file to be used
 	 */
 	public World(String fileName) {
@@ -104,13 +100,15 @@ public class World implements Serializable {
 	 * sprite to the parsed objects <br>
 	 * Assumes file format is valid
 	 * 
-	 * @param state - the game level
 	 * @param fileName - relative target of map file to be used
-	 * @param sprites - HashMap of Sprite each corresponding to a GameObject
-	 */
+     */
 	private void parseFile(String fileName) {
 		try {
-			BufferedReader br = new BufferedReader(new InputStreamReader(Game.class.getResourceAsStream(fileName)));
+			BufferedReader br = new BufferedReader(
+					new InputStreamReader(
+							new FileInputStream(fileName)
+					)
+			);
 			// reads dimensions in: HEIGHT WIDTH e.g. 10 21
 			String[] dim = br.readLine().split("\\s+");
 			World.HEIGHT = Integer.parseInt(dim[0]);
@@ -265,7 +263,7 @@ public class World implements Serializable {
 	private Map<String, Sprite> loadWorldSprites() {
 		Map<String, Sprite> sprites = new HashMap<>();
 		try {
-			SpriteSheet spritesheet = new SpriteSheet("/spritesheets/textures.png", 8, 8);
+			SpriteSheet spritesheet = new SpriteSheet(Game.SPRITE_DIR+ File.separator+"textures.png", 8, 8);
 			sprites.put("floor", spritesheet.getSprite(0, 0));
 			sprites.put("wall", spritesheet.getSprite(0, 1));
 
@@ -577,9 +575,8 @@ public class World implements Serializable {
 
 	/***
 	 * Load the map from file and restore it to state of saved game
-	 * 
-	 * @param playState
-	 */
+	 *
+     */
 	public void load() {
 		ArrayList<Item> loadedPickableItems = new ArrayList<>(pickableItems); // List
 																				// Loaded

@@ -8,6 +8,8 @@ import game.graphics.GraphicsLoader;
 import game.graphics.SpriteSheet;
 import game.graphics.StaticSprite;
 
+import java.io.File;
+
 /**
  * GraphicsTests are designed to test all classes within the game.graphics
  * package.
@@ -17,7 +19,7 @@ public class GraphicsTests {
 	@Test
 	public void testLoadValidImage() {
 		try {
-			GraphicsLoader.loadImage("/backgrounds/menu.png");
+			GraphicsLoader.loadImage(System.getProperty("user.dir")+ File.separator+"res/backgrounds/menu.png");
 		} catch (GraphicsException e) {
 			fail("Should load image");
 		}
@@ -35,7 +37,7 @@ public class GraphicsTests {
 	@Test
 	public void testLoadValidFont() {
 		try {
-			GraphicsLoader.loadFont("/fonts/gamegirl.ttf");
+			GraphicsLoader.loadFont(System.getProperty("user.dir")+"\\res/fonts/gamegirl.ttf");
 		} catch (GraphicsException e) {
 			fail("Should load font");
 		}
@@ -53,7 +55,7 @@ public class GraphicsTests {
 	@Test
 	public void testCreateValidSpriteSheet() {
 		try {
-			new SpriteSheet("/backgrounds/menu.png", 2, 2);
+			new SpriteSheet(System.getProperty("user.dir")+"\\res/backgrounds/menu.png", 2, 2);
 		} catch (GraphicsException e) {
 			fail("Should create valid spritesheet");
 		}
@@ -71,7 +73,7 @@ public class GraphicsTests {
 	@Test
 	public void testCreateValidStaticSprite() {
 		try {
-			SpriteSheet spritesheet = new SpriteSheet("/backgrounds/menu.png", 2, 2);
+			SpriteSheet spritesheet = new SpriteSheet(System.getProperty("user.dir")+"\\res/backgrounds/menu.png", 2, 2);
 			spritesheet.getSprite(0, 0);
 		} catch (GraphicsException e) {
 			fail("Should create valid static sprite");
@@ -81,7 +83,7 @@ public class GraphicsTests {
 	@Test
 	public void testCreateInvalidStaticSprite1() {
 		try {
-			SpriteSheet spritesheet = new SpriteSheet("/backgrounds/menu.png", 2, 2);
+			SpriteSheet spritesheet = new SpriteSheet(System.getProperty("user.dir")+"\\res/backgrounds/menu.png", 2, 2);
 			spritesheet.getSprite(2, 2);
 			fail("Should not create a static sprite");
 		} catch (GraphicsException ignored) {
@@ -100,7 +102,7 @@ public class GraphicsTests {
 	@Test
 	public void testCreateValidAnimatedSprite1() {
 		try {
-			SpriteSheet spritesheet = new SpriteSheet("/backgrounds/menu.png", 2, 2);
+			SpriteSheet spritesheet = new SpriteSheet(System.getProperty("user.dir")+"\\res/backgrounds/menu.png", 2, 2);
 			spritesheet.getSprites(0, 0, 1);
 		} catch (GraphicsException e) {
 			fail("Should create valid static sprite");
@@ -110,7 +112,7 @@ public class GraphicsTests {
 	@Test
 	public void testCreateValidAnimatedSprite2() {
 		try {
-			SpriteSheet spritesheet = new SpriteSheet("/backgrounds/menu.png", 2, 2);
+			SpriteSheet spritesheet = new SpriteSheet(System.getProperty("user.dir")+"\\res/backgrounds/menu.png", 2, 2);
 			AnimatedSprite sprite = spritesheet.getSprites(0, 0, 1);
             assertEquals(2, sprite.getSprites().length);
 		} catch (GraphicsException e) {
@@ -121,7 +123,7 @@ public class GraphicsTests {
 	@Test
 	public void testCreateValidAnimatedSprite3() {
 		try {
-			SpriteSheet spritesheet = new SpriteSheet("/backgrounds/menu.png", 2, 2);
+			SpriteSheet spritesheet = new SpriteSheet(System.getProperty("user.dir")+"\\res/backgrounds/menu.png", 2, 2);
 			AnimatedSprite sprite = spritesheet.getSprites(0, 0, 1);
             assertEquals(2, sprite.getSprites().length);
 		} catch (GraphicsException e) {
@@ -133,7 +135,7 @@ public class GraphicsTests {
 	@Test
 	public void testCreateInvalidAnimatedSprite1() {
 		try {
-			SpriteSheet spritesheet = new SpriteSheet("/backgrounds/menu.png", 2, 2);
+			SpriteSheet spritesheet = new SpriteSheet(System.getProperty("user.dir")+"\\res/backgrounds/menu.png", 2, 2);
 			spritesheet.getSprites(0, 0, 2);
 			fail("Should not create valid static sprite");
 		} catch (GraphicsException ignored) {
@@ -143,7 +145,7 @@ public class GraphicsTests {
 	@Test
 	public void testCreateInvalidAnimatedSprite2() {
 		try {
-			SpriteSheet spritesheet = new SpriteSheet("/backgrounds/menu.png", 2, 2);
+			SpriteSheet spritesheet = new SpriteSheet(System.getProperty("user.dir")+"\\res/backgrounds/menu.png", 2, 2);
 			spritesheet.getSprites(0, 2, 0);
 			fail("Should not create valid static sprite");
 		} catch (GraphicsException ignored) {

@@ -1,5 +1,7 @@
 import static org.junit.Assert.*;
 
+import java.io.File;
+import java.io.FileNotFoundException;
 import java.io.InputStreamReader;
 import java.util.List;
 import java.util.Scanner;
@@ -31,9 +33,9 @@ import org.junit.Test;
 public class GameWorldTests {
 
 	@Test
-	public void validParseFileTest() {
-		World world = new World ("/boards/test3.txt");
-		Scanner sc = new Scanner(new InputStreamReader(Game.class.getResourceAsStream("/boards/test3.txt")));
+	public void validParseFileTest() throws FileNotFoundException {
+		World world = new World (System.getProperty("user.dir")+"\\res\\boards\\test3.txt");
+		Scanner sc = new Scanner(new File(System.getProperty("user.dir")+"\\res\\boards\\test3.txt"));
 		char [][] array = new char [Integer.parseInt(sc.next())][Integer.parseInt(sc.next())];
 
 		int row = 0;
@@ -82,7 +84,7 @@ public class GameWorldTests {
 	@Test
 	public void invalidParseFileTest1() {
 		try {
-			new World ("/boards/invalidRow.txt");
+			new World (System.getProperty("user.dir")+"\\res\\boards\\invalidRow.txt");
 		} catch (FileFormatException e) {
 			assertEquals("Illegal File Format . Lacking Number of coordinates needed", e.getMessage());
 		}
@@ -91,7 +93,7 @@ public class GameWorldTests {
 	@Test
 	public void invalidParseFileTest2() {
 		try {
-			new World ("/boards/noCoordinate.txt");
+			new World (System.getProperty("user.dir")+"\\res\\boards\\noCoordinate.txt");
 		} catch (FileFormatException e) {
 			assertEquals("Illegal File Format . Intended coordinate NaN", e.getMessage());
 		}
@@ -100,20 +102,20 @@ public class GameWorldTests {
 	@Test
 	public void invalidParseFileTest3() {
 		try {
-			new World ("/boards/oneCoordinate.txt");
+			new World (System.getProperty("user.dir")+"\\res\\boards\\oneCoordinate.txt");
 		} catch (FileFormatException e) {
 			assertEquals("Illegal File Format . Lacking Number of coordinates needed", e.getMessage());
 		}
 	}
 
-	@Test	(expected=NullPointerException.class)
+	@Test	(expected=FileNotFoundException.class)
 	public void invalidParseFileTest4() {
-		new World ( "/boards/notExists.txt");
+		new World ( System.getProperty("user.dir")+"\\res\\boards\\notExists.txt");
 	}
 
 	@Test
 	public void takeItemTest() {
-		World world = new World ("/boards/test3.txt");
+		World world = new World (System.getProperty("user.dir")+"\\res\\boards\\test3.txt");
 		//take pill
 		world.takeItem((Item) world.getObject(3, 6), null);
 		assertTrue (world.getObject(3, 6) instanceof Floor);
@@ -121,7 +123,7 @@ public class GameWorldTests {
 
 	@Test
 	public void useTest() {
-		World world = new World ("/boards/test3.txt");
+		World world = new World (System.getProperty("user.dir")+"\\res\\boards\\test3.txt");
 		Player player = new Player("",5*World.TILE_SIZE,5*World.TILE_SIZE,10);
 		//take pill
 		world.use(player, (Item) world.getObject(3, 6));
@@ -130,7 +132,7 @@ public class GameWorldTests {
 
 	@Test
 	public void validGeneratePhaserTest() throws InterruptedException {
-		World world = new World ("/boards/test3.txt");
+		World world = new World (System.getProperty("user.dir")+"\\res\\boards\\test3.txt");
 		List<Item> list = world.getPickable();
 		int phasersBefore = 0;
 		for (Item i : list) {
@@ -153,7 +155,7 @@ public class GameWorldTests {
 
 	@Test
 	public void invalidGeneratePhaserTest() {
-		World world = new World ("/boards/test3.txt");
+		World world = new World (System.getProperty("user.dir")+"\\res\\boards\\test3.txt");
 		List<Item> list = world.getPickable();
 		int phasersBefore = 0;
 		for (Item i : list) {
@@ -175,7 +177,7 @@ public class GameWorldTests {
 
 	@Test
 	public void validGenerateKeyTest() throws InterruptedException {
-		World world = new World ("/boards/test3.txt");
+		World world = new World (System.getProperty("user.dir")+"\\res\\boards\\test3.txt");
 		List<Item> list = world.getPickable();
 		int keysBefore = 0;
 		for (Item i : list) {
@@ -198,7 +200,7 @@ public class GameWorldTests {
 
 	@Test
 	public void invalidGenerateKeyTest() {
-		World world = new World ("/boards/test3.txt");
+		World world = new World (System.getProperty("user.dir")+"\\res\\boards\\test3.txt");
 		List<Item> list = world.getPickable();
 		int keysBefore = 0;
 		for (Item i : list) {
@@ -220,7 +222,7 @@ public class GameWorldTests {
 
 	@Test
 	public void addCharacterTest() {
-		World world = new World ("/boards/test3.txt");
+		World world = new World (System.getProperty("user.dir")+"\\res\\boards\\test3.txt");
 		int sizeBefore = world.getEntities().size();
 		world.addCharacter(new Player());
 		world.addCharacter(new Player());
@@ -229,7 +231,7 @@ public class GameWorldTests {
 
 	@Test
 	public void removeCharacterTest() {
-		World world = new World ("/boards/test3.txt");
+		World world = new World (System.getProperty("user.dir")+"\\res\\boards\\test3.txt");
 		int sizeBefore = world.getEntities().size();
 		world.getEntities().remove(0);
 		world.getEntities().remove(0);
@@ -238,19 +240,19 @@ public class GameWorldTests {
 
 	@Test
 	public void stationaryObjectsTest() {
-		World world = new World ("/boards/test3.txt");
+		World world = new World (System.getProperty("user.dir")+"\\res\\boards\\test3.txt");
 		assertEquals(72, world.getObjects().size());
 	}
 
 	@Test
 	public void pickableItemsTest() {
-		World world = new World ("/boards/test3.txt");
+		World world = new World (System.getProperty("user.dir")+"\\res\\boards\\test3.txt");
 		assertEquals(5, world.getPickable().size());
 	}
 
 	@Test
 	public void testBulletMove() {
-		World world = new World ("/boards/test3.txt");
+		World world = new World (System.getProperty("user.dir")+"\\res\\boards\\test3.txt");
 		Bullet b = new Bullet(new Player("Player", 5, 5, 5), 5, 85, 65, 10, Direction.NORTH, null);
 
 		b.update(world);

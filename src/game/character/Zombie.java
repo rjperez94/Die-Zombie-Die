@@ -1,7 +1,9 @@
 package game.character;
 
+import java.io.File;
 import java.io.Serializable;
 
+import game.Game;
 import game.Utilities.Direction;
 import game.character.strategy.*;
 import game.exception.GraphicsException;
@@ -55,7 +57,7 @@ public class Zombie extends Character implements Serializable{
 	@Override
 	public void loadSprites() {
 		try {
-			SpriteSheet spritesheet = new SpriteSheet("/spritesheets/zombie.png", 4, 8);
+			SpriteSheet spritesheet = new SpriteSheet(Game.SPRITE_DIR+File.separator+"zombie.png", 4, 8);
 			sprites.put("stopDown", spritesheet.getSprite(0, 0));
 			sprites.put("down", spritesheet.getSprites(0, 0, 3));
 			sprites.put("up", spritesheet.getSprites(1, 0, 3));

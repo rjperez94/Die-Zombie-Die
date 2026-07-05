@@ -5,6 +5,7 @@ import java.awt.Font;
 import java.awt.Graphics2D;
 import java.awt.event.KeyEvent;
 import java.awt.geom.Point2D;
+import java.io.File;
 import java.io.FileNotFoundException;
 
 import javax.swing.JOptionPane;
@@ -81,11 +82,11 @@ public class PlayState extends GameState {
 		useTimer = 0;
 
 		try {
-			starfield = new StaticSprite(GraphicsLoader.loadImage("/backgrounds/starfield.png"));
+			starfield = new StaticSprite(GraphicsLoader.loadImage(Game.BACK_DIR+File.separator+"starfield.png"));
 		} catch (GraphicsException e) {
 			e.printStackTrace();
 		}
-		world = new World("/boards/mapFile.txt");
+		world = new World(Game.BOARD_DIR+File.separator+"mapFile.txt");
 
 		initPlayer();
 		minimap = new MiniMap(world, player);
