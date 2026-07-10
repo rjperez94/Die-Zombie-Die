@@ -4,6 +4,8 @@ import java.awt.Font;
 import java.awt.GraphicsEnvironment;
 import java.awt.image.BufferedImage;
 import java.io.File;
+import java.nio.file.Files;
+import java.nio.file.Paths;
 
 import javax.imageio.ImageIO;
 
@@ -28,11 +30,20 @@ public class GraphicsLoader {
      */
 	public static BufferedImage loadImage(String filepath) throws GraphicsException {
 		try {
-			return ImageIO.read(new File(filepath));
+			if (Files.notExists(Paths.get(filepath))) {
+				for (String pref : new String[] { "backgrounds", "boards", "spritesheets" }) {
+					if (Files.exists(Paths.get(System.getProperty("user.dir") + "/res/"+ pref + "/" + filepath.replace("null\\","")))) {
+						return ImageIO.read(Game.class.getResourceAsStream("/" + pref + "/" + filepath.replace("null\\","")));
+					}
+				}
+			} else {
+				return ImageIO.read(new File(filepath));
+			}
+			throw new GraphicsException("Unable to load " + filepath);
 		} catch (Exception e) {
 			throw new GraphicsException("Unable to load " + filepath);
 		}
-	}
+    }
 
 	/**
 	 * Returns a <code>Font</code> that is loaded from the specified file.

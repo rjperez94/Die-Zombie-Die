@@ -1,6 +1,8 @@
 package game.world;
 
 import java.io.*;
+import java.nio.file.Files;
+import java.nio.file.Paths;
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
@@ -23,6 +25,8 @@ import game.item.KeyCard;
 import game.item.SupplyBox;
 import game.item.Door;
 import game.item.type.Item;
+
+import javax.imageio.ImageIO;
 
 /**
  * This represents the game 'map'
@@ -104,11 +108,20 @@ public class World implements Serializable {
      */
 	private void parseFile(String fileName) {
 		try {
-			BufferedReader br = new BufferedReader(
-					new InputStreamReader(
-							new FileInputStream(fileName)
-					)
-			);
+			BufferedReader br;
+			if (Files.notExists(Paths.get(fileName))) {
+				br = new BufferedReader(
+						new InputStreamReader(
+								Game.class.getResourceAsStream("/boards/" + fileName.replace("null\\",""))
+						)
+				);
+			} else {
+				br = new BufferedReader(
+						new InputStreamReader(
+								new FileInputStream(fileName)
+						)
+				);
+			}
 			// reads dimensions in: HEIGHT WIDTH e.g. 10 21
 			String[] dim = br.readLine().split("\\s+");
 			World.HEIGHT = Integer.parseInt(dim[0]);

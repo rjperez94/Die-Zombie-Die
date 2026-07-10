@@ -108,7 +108,7 @@ public class GameWorldTests {
 		}
 	}
 
-	@Test	(expected=FileNotFoundException.class)
+	@Test	(expected=NullPointerException.class)
 	public void invalidParseFileTest4() {
 		new World ( System.getProperty("user.dir")+"\\res\\boards\\notExists.txt");
 	}
